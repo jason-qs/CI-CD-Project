@@ -12,7 +12,6 @@ class Movie: Serializable{
     var name: String? = null
     var address: String? = null
     var category: String? = null
-    var userId: Long? = null
 
     @OneToMany(cascade = [CascadeType.ALL])
     @JoinColumn(name = "restaurantId")
@@ -23,7 +22,6 @@ class Movie: Serializable{
         this.name = name
         this.address = address
         this.category = category
-        this.userId = userId
     }
 
     constructor() : super() {}

@@ -1,0 +1,17 @@
+.mainbody {
+    max-width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.leftdiv {
+    align-self: flex-start;
+    width: 50%;
+}
+
+.righdiv {
+    align-self: flex-end;
+    width: 50%;
+}

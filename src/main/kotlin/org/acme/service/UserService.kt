@@ -30,38 +30,38 @@ class UserService(private val security: Password) {
     }
 
 
-    @Transactional(Transactional.TxType.REQUIRED)
-    fun addUser(user: User?): User? {
-        if (user != null) {
-            user.password = security.encodePassword(user.password)
-        }
-        entityManager!!.persist(user)
-        return user
-    }
-
-    private fun validateUser(username: String?, pwd: String): Boolean {
-        val user = getUserByUsername(username)
-        return (user != null && security.validPassword(pwd, user.password))
-    }
-
-    fun authenticate(username: String?, password: String): Boolean {
-        try{
-            val user = getUserByUsername(username)
-            return (user != null && validateUser(username, password))
-
-        } catch (x: Exception){
-
-        }
-        return false
-    }
+//    @Transactional(Transactional.TxType.REQUIRED)
+//    fun addUser(user: User?): User? {
+//        if (user != null) {
+//            user.password = security.encodePassword(user.password)
+//        }
+//        entityManager!!.persist(user)
+//        return user
+//    }
+//
+//    private fun validateUser(username: String?, pwd: String): Boolean {
+//        val user = getUserByUsername(username)
+//        return (user != null && security.validPassword(pwd, user.password))
+//    }
+//
+//    fun authenticate(username: String?, password: String): Boolean {
+//        try{
+//            val user = getUserByUsername(username)
+//            return (user != null && validateUser(username, password))
+//
+//        } catch (x: Exception){
+//
+//        }
+//        return false
+//    }
 
     @Transactional(Transactional.TxType.REQUIRED)
     fun updateUser(id: Long?, user: User) {
         val userToUpdate: User = entityManager!!.
         find(User::class.java, id)
         if (null != userToUpdate) {
-            userToUpdate.firstName = user.firstName
-            userToUpdate.lastName = user.lastName
+            userToUpdate.firstname = user.firstname
+            userToUpdate.lastname = user.lastname
             userToUpdate.password = user.password
         } else {
             throw RuntimeException("No such user available")

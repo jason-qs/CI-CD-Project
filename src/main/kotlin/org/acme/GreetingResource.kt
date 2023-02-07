@@ -9,7 +9,9 @@ import javax.ws.rs.core.SecurityContext
 class GreetingResource {
 
     @GET
-    fun hello() = Greeting("Hello")
+    fun hello():String {
+        return("Test Point")
+    }
 
     @GET
     @Path("/auth")

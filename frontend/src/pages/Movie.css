@@ -1,0 +1,28 @@
+.mainBody {
+    max-width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction:column;
+}
+
+.leftDiv {
+    width: 50%;
+
+}
+
+.rightDiv {
+    width: 50%;
+
+}
+
+.reviewDiv {
+    width: 100%;
+}
+
+.moviePoster {
+    height: 56vh ;
+    width: 40vh;
+    background-color: aqua;
+
+}

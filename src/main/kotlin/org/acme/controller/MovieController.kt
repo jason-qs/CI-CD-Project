@@ -63,7 +63,7 @@ class MovieController {
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun rateMovie(@Context ctx: SecurityContext, @PathParam("id") id: Long?, movie: Movie): Movie? {
+    fun rateMovie(@Context ctx: SecurityContext, @PathParam("id") id: Long?, review: Review): Review? {
         val user: User = userResource!!.getUserByUsername(ctx.userPrincipal.name.toString())!!
         val reviewToBeCreated: Review = review
         reviewToBeCreated.userId= user.id

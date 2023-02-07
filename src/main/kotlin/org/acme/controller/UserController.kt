@@ -49,23 +49,23 @@ class UserController{
 
     @GET
     @Path("/test2")
-    @RolesAllowed("user")
+    @RolesAllowed("admin")
     @Produces(MediaType.TEXT_PLAIN)
     fun getOidcString(): String {
         return "Hello" + jwt.toString()
     }
 
-    @POST
-    @PermitAll
-    @Path("/login")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun login(user: User): Any? {
-        return if (userResource?.authenticate(user.userName,user.password) == true) {
-            val token = token?.getToken(user)
-            Response.ok(token).build()
-        } else Response.status(Response.Status.BAD_REQUEST).entity("Invalid credentials!").build()
-    }
+//    @POST
+//    @PermitAll
+//    @Path("/login")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    fun login(user: User): Any? {
+//        return if (userResource?.authenticate(user.userName,user.password) == true) {
+//            val token = token?.getToken(user)
+//            Response.ok(token).build()
+//        } else Response.status(Response.Status.BAD_REQUEST).entity("Invalid credentials!").build()
+//    }
 
     @GET
     @PermitAll
@@ -90,17 +90,17 @@ class UserController{
         return userResource?.getUser(id)?.reviews!!
     }
 
-    @GET
-    @RolesAllowed("admin")
-    @Path("/keys")
-    @Produces(MediaType.APPLICATION_JSON)
-    fun getKeys(certification: Certification) {
-        return certification.generateKeyPairs()
-    }
+//    @GET
+//    @RolesAllowed("admin")
+//    @Path("/keys")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    fun getKeys(certification: Certification) {
+//        return certification.generateKeyPairs()
+//    }
 
     @GET
     @RolesAllowed("admin")
-    @Path("/{id}/restaurants")
+    @Path("/{id}/movies")
     @Produces(MediaType.APPLICATION_JSON)
     fun getUserRestaurants(@PathParam("id") id: Long?): MutableSet<Movie> {
         return userResource?.getUser(id)?.movie!!
@@ -120,16 +120,16 @@ class UserController{
         userResource?.deleteUser(id)
     }
 
-    @POST
-    @PermitAll
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun addUser( user: User): Response {
-        val result = userResource?.addUser(user)
-        return if (result != null) {
-            Response .status(Response.Status.CREATED).entity("created $result").build()
-        } else Response.status(Response.Status.BAD_REQUEST).entity("unable to create user!").build()
-    }
+//    @POST
+//    @PermitAll
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    fun addUser( user: User): Response {
+//        val result = userResource?.addUser(user)
+//        return if (result != null) {
+//            Response .status(Response.Status.CREATED).entity("created $result").build()
+//        } else Response.status(Response.Status.BAD_REQUEST).entity("unable to create user!").build()
+//    }
     @GET
     @RolesAllowed("user")
     @Path("/me")
@@ -167,7 +167,7 @@ class UserController{
     fun updateMeReviewsIndex(@PathParam("id") id: Int?,@Context ctx: SecurityContext, review: Review): Unit? {
         val reviews: MutableSet<Review> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.reviews
         val reviewToBeUpdated: Review = reviews.elementAt(id!!)
-        return reviewResource?.updateMovie(reviewToBeUpdated.id, review)
+        return reviewResource?.updateReview(reviewToBeUpdated.id, review)
     }
 
     @DELETE
@@ -198,33 +198,11 @@ class UserController{
     @Path("/me/movies/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun getMeRestaurantsIndex(@PathParam("id") id: Int?,@Context ctx: SecurityContext): Any {
+    fun getMeMoviesIndex(@PathParam("id") id: Int?,@Context ctx: SecurityContext): Any {
         val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
         return movies.elementAt(id!!)
     }
 
-    @POST
-    @RolesAllowed("user")
-    @Path("/me/movies")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun createMeRestaurant(@Context ctx: SecurityContext, movie: Movie): Movie? {
-        val user: User= userResource!!.getUserByUsername(ctx.userPrincipal.name)!!
-        val movieToBeCreated: Movie = movie
-        movieToBeCreated.userId= user.id
-        return movieResource?.addMovie(movieToBeCreated)
-    }
-
-    @DELETE
-    @RolesAllowed("user")
-    @Path("/me/movies/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun deleteMeMovie(@PathParam("id") id : Long?,@Context ctx: SecurityContext) {
-        val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
-        val movieToBeDeleted: Movie = movies.elementAt(id!!.toInt())
-        return movieResource!!.deleteMovie(movieToBeDeleted.id)
-    }
 
     @PUT
     @RolesAllowed("user")
