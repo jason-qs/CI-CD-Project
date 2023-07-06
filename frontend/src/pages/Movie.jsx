@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import NavBar from "../components/NavBar";
+import ReviewCard from "../components/ReviewCard";
 import './Movie.css';
 
 function Movie () {
@@ -8,16 +9,19 @@ function Movie () {
     return (
         <>
         <NavBar />
-        <div className="mainbody">
+        <div className="mainBody">
+        <div className="bodyContainer">
         <div className="leftDiv">
             <div className="moviePoster">
                 PlaceHolder
             </div>
         </div>
         <div className="rightDiv">
+            <div className="TitleDiv">
                 <Typography>
                     Movie Title
                 </Typography>
+                </div>
                 <div className="movieDetails">
                     <Typography>
                         Rating:
@@ -31,6 +35,8 @@ function Movie () {
                 </div>
 
         </div>
+    </div>
+    <div className="review container">
         <div className="reviewDiv">
             <Typography>
                 Reviews
@@ -38,8 +44,10 @@ function Movie () {
             <Typography>
                 Create Review
             </Typography>
+            <ReviewCard />
         </div>
         </div>
+    </div>
     </>
     )
 }

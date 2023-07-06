@@ -13,9 +13,9 @@ class Review : Serializable {
     var content: String? = null
     var rating: Float? = null
     var movieId: Long? = null
-    var userId: Long? = null
+    var userId: String? = null
 
-    constructor(id: Long?, content: String?, rating: Float?, movieId: Long?, userId: Long?) {
+    constructor(id: Long?, content: String?, rating: Float?, movieId: Long?, userId: String?) {
         this.id = id
         this.content = content
         this.rating = rating

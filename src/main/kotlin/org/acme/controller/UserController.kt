@@ -98,21 +98,21 @@ class UserController{
 //        return certification.generateKeyPairs()
 //    }
 
-    @GET
-    @RolesAllowed("admin")
-    @Path("/{id}/movies")
-    @Produces(MediaType.APPLICATION_JSON)
-    fun getUserRestaurants(@PathParam("id") id: Long?): MutableSet<Movie> {
-        return userResource?.getUser(id)?.movie!!
-    }
+//    @GET
+//    @RolesAllowed("admin")
+//    @Path("/{id}/movies")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    fun getUserRestaurants(@PathParam("id") id: Long?): MutableSet<Movie> {
+//        return userResource?.getUser(id)?.movie!!
+//    }
 
-    @PUT
-    @RolesAllowed("admin")
-    @Path("/{id}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun updateUser(@PathParam("id") id: Long?, user: User?) {
-        userResource?.updateUser(id, user!!)
-    }
+//    @PUT
+//    @RolesAllowed("admin")
+//    @Path("/{id}")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    fun updateUser(@PathParam("id") id: Long?, user: User?) {
+//        userResource?.updateUser(id, user!!)
+//    }
     @DELETE
     @RolesAllowed("admin")
     @Path("/{id}")
@@ -192,27 +192,27 @@ class UserController{
         reviewToBeCreated.userId= user.id
         return reviewResource?.addReview(reviewToBeCreated)
     }
-
-    @GET
-    @RolesAllowed("user")
-    @Path("/me/movies/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun getMeMoviesIndex(@PathParam("id") id: Int?,@Context ctx: SecurityContext): Any {
-        val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
-        return movies.elementAt(id!!)
-    }
-
-
-    @PUT
-    @RolesAllowed("user")
-    @Path("/me/movies/{id}")
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    fun updateMeMovie(@PathParam("id") id : Long?, @Context ctx: SecurityContext, movie: Movie): Unit?{
-        val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
-        val movieToBeUpdated: Movie = movies.elementAt(id!!.toInt())
-        return movieResource?.updateMovie(movieToBeUpdated.id,movie)
-    }
+//
+//    @GET
+//    @RolesAllowed("user")
+//    @Path("/me/movies/{id}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    fun getMeMoviesIndex(@PathParam("id") id: Int?,@Context ctx: SecurityContext): Any {
+//        val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
+//        return movies.elementAt(id!!)
+//    }
+//
+//
+//    @PUT
+//    @RolesAllowed("user")
+//    @Path("/me/movies/{id}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    fun updateMeMovie(@PathParam("id") id : Long?, @Context ctx: SecurityContext, movie: Movie): Unit?{
+//        val movies: MutableSet<Movie> = userResource!!.getUserByUsername(ctx.userPrincipal.name)!!.movie
+//        val movieToBeUpdated: Movie = movies.elementAt(id!!.toInt())
+//        return movieResource?.updateMovie(movieToBeUpdated.id,movie)
+//    }
 
 }

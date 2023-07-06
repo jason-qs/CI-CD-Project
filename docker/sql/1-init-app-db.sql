@@ -17,7 +17,6 @@ create table movies (
         category varchar(255),
         name varchar(255),
         userId VARCHAR(255),
-        restaurantId int8,
         primary key (id)
     );
 
@@ -39,10 +38,6 @@ create sequence hibernate_sequence start 1 increment 1;
        foreign key (userId)
        references users;
 
-    alter table if exists movies
-       add constraint FK5mgoy0wm7bqeyx7kga96i74u
-       foreign key (restaurantId)
-       references movies;
 
     alter table if exists reviews
        add constraint FKkdo10i2psd58tkubw6wovrnec

@@ -13,11 +13,8 @@ class Movie: Serializable{
     var address: String? = null
     var category: String? = null
 
-    @OneToMany(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "restaurantId")
-    open var movies: MutableSet<Movie> = mutableSetOf()
 
-    constructor(id: Long?, name: String?, address: String?, category: String?, userId: Long?) {
+    constructor(id: Long?, name: String?, address: String?, category: String?) {
         this.id = id
         this.name = name
         this.address = address

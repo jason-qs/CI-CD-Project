@@ -55,18 +55,18 @@ class UserService(private val security: Password) {
 //        return false
 //    }
 
-    @Transactional(Transactional.TxType.REQUIRED)
-    fun updateUser(id: Long?, user: User) {
-        val userToUpdate: User = entityManager!!.
-        find(User::class.java, id)
-        if (null != userToUpdate) {
-            userToUpdate.firstname = user.firstname
-            userToUpdate.lastname = user.lastname
-            userToUpdate.password = user.password
-        } else {
-            throw RuntimeException("No such user available")
-        }
-    }
+//    @Transactional(Transactional.TxType.REQUIRED)
+//    fun updateUser(id: Long?, user: User) {
+//        val userToUpdate: User = entityManager!!.
+//        find(User::class.java, id)
+//        if (null != userToUpdate) {
+//            userToUpdate.firstname = user.firstname
+//            userToUpdate.lastname = user.lastname
+//            userToUpdate.password = user.password
+//        } else {
+//            throw RuntimeException("No such user available")
+//        }
+//    }
     @Transactional(Transactional.TxType.REQUIRED)
     fun deleteUser(id: Long?) {
         val user: User = getUser(id)
