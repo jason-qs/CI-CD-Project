@@ -4,7 +4,6 @@ services:
     container_name: postgres_app
     image: "postgres:13.2"
     volumes:
-      - ./db-data:/var/lib/postgresql/data/
       - ./sql:/docker-entrypoint-initdb.d/:ro
     env_file:
       - ./database.dev.env

@@ -13,7 +13,7 @@ function Movie () {
         <div className="bodyContainer">
         <div className="leftDiv">
             <div className="moviePoster">
-                PlaceHolder
+                Text
             </div>
         </div>
         <div className="rightDiv">

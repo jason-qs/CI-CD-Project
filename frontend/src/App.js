@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <>
       <Movies movies={this.state.movies} />
+      <Typography>{this.state.movies}</Typography>
       </>
     )
   }

@@ -31,15 +31,3 @@ DROP TABLE IF EXISTS reviews;
         primary key (id)
     );
 
-create sequence hibernate_sequence start 1 increment 1;
-
-    alter table if exists movies
-       add constraint FKl9buvqbal5oru1cj1ma3xxcgr
-       foreign key (userId)
-       references users;
-
-
-    alter table if exists reviews
-       add constraint FKkdo10i2psd58tkubw6wovrnec
-       foreign key (userId)
-       references users;

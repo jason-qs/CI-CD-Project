@@ -19,6 +19,13 @@ class ReviewService {
     fun getReview(id: Long?): Review {
         return  entityManager!!.find(Review::class.java, id)
     }
+
+    fun getReviewsByUserId(id: String): List<Review> {
+        return entityManager!!.createQuery("SELECT c From Review c WHERE c.userId LIKE :userId")
+            .setParameter("userId", id)
+            .resultList as List<Review>
+    }
+
     @Transactional(Transactional.TxType.REQUIRED)
     fun addReview(review: Review?): Review? {
         entityManager!!.persist(review)

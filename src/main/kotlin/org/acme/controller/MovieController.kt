@@ -3,10 +3,9 @@ package org.acme.controller
 
 import org.acme.entity.Movie
 import org.acme.entity.Review
-import org.acme.entity.User
 import org.acme.service.MovieService
 import org.acme.service.ReviewService
-import org.acme.service.UserService
+import org.eclipse.microprofile.jwt.JsonWebToken
 import javax.annotation.security.PermitAll
 import javax.annotation.security.RolesAllowed
 
@@ -21,7 +20,7 @@ import javax.ws.rs.core.SecurityContext
 class MovieController {
 
     @Inject
-    var userResource: UserService? = null
+    var jwt: JsonWebToken? = null
     @Inject
     var reviewResource: ReviewService? = null
     @Inject
@@ -64,9 +63,8 @@ class MovieController {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     fun rateMovie(@Context ctx: SecurityContext, @PathParam("id") id: Long?, review: Review): Review? {
-        val user: User = userResource!!.getUserByUsername(ctx.userPrincipal.name.toString())!!
         val reviewToBeCreated: Review = review
-        reviewToBeCreated.userId= user.id
+        reviewToBeCreated.userId= jwt!!.subject
         reviewToBeCreated.movieId = id
         return reviewResource?.addReview(reviewToBeCreated)
     }

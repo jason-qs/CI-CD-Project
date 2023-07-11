@@ -1,0 +1,15 @@
+name: Test and Deploy
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+  native-build:
+    name: Build native Quarkus App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@master
