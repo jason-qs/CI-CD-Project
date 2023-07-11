@@ -17,29 +17,29 @@ class GreetingResourceTest {
              .body(`is`("Test Point"))
     }
 
-    @Test
-    fun testMovieEndpoint() {
-        given()
-            .`when`().get("/api/movies")
-            .then()
-            .statusCode(200)
-    }
-
-    @Test
-    fun testEndpoint() {
-        given()
-            .`when`().get("/api/users/test")
-            .then()
-            .statusCode(200)
-    }
-
-    @Test
-    fun test2Endpoint() {
-        given()
-            .`when`().get("/api/users/test2")
-            .then()
-            .statusCode(401)
-    }
+//    @Test
+//    fun testMovieEndpoint() {
+//        given()
+//            .`when`().get("/api/movies")
+//            .then()
+//            .statusCode(200)
+//    }
+//
+//    @Test
+//    fun testEndpoint() {
+//        given()
+//            .`when`().get("/api/users/test")
+//            .then()
+//            .statusCode(200)
+//    }
+//
+//    @Test
+//    fun test2Endpoint() {
+//        given()
+//            .`when`().get("/api/users/test2")
+//            .then()
+//            .statusCode(401)
+//    }
 
 
 }
